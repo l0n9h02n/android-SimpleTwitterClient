@@ -1,5 +1,7 @@
 package com.codepath.apps.simpletwitterclient.models;
 
+import com.codepath.apps.simpletwitterclient.TwitterClient;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,6 +16,12 @@ public class Tweet {
     private long uid;
     private String createdAt;
     private User user;
+
+    public int getRetweetCount() {
+        return retweetCount;
+    }
+
+    private int retweetCount;
 
     public String getBody() {
         return body;
@@ -37,12 +45,13 @@ public class Tweet {
             tweet.body = jsonObject.getString("text");
             tweet.uid = jsonObject.getLong("id");
             tweet.createdAt = jsonObject.getString("created_at");
+            tweet.retweetCount = jsonObject.getInt("retweet_count");
             tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
 
+            TwitterClient.maxId = tweet.uid;
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
         return tweet;
     }

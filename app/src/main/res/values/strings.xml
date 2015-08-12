@@ -7,7 +7,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
     <string name="user_name">User Name</string>
     <string name="tweet_content">Tweet Content</string>
+    <string name="user_screenname">User ID</string>
 
 </resources>

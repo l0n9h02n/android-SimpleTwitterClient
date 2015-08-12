@@ -10,6 +10,7 @@ import com.codepath.apps.simpletwitterclient.R;
 import com.codepath.apps.simpletwitterclient.TwitterApplication;
 import com.codepath.apps.simpletwitterclient.TwitterClient;
 import com.codepath.apps.simpletwitterclient.adapters.TweetsArrayAdapter;
+import com.codepath.apps.simpletwitterclient.helpers.EndlessScrollListener;
 import com.codepath.apps.simpletwitterclient.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -35,6 +36,12 @@ public class TimelineActivity extends ActionBarActivity {
         tweets = new ArrayList<>();
         aTweets = new TweetsArrayAdapter(this, tweets);
         lvTweets.setAdapter(aTweets);
+        lvTweets.setOnScrollListener(new EndlessScrollListener() {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount) {
+                populateTime();
+            }
+        });
 
         client = TwitterApplication.getRestClient();
         populateTime();
@@ -46,6 +53,7 @@ public class TimelineActivity extends ActionBarActivity {
             public void onSuccess(int statusCode, Header[] headers, JSONArray json) {
                 // Log.i("debug", json.toString());
                 aTweets.addAll(Tweet.fromJSONArray(json));
+
             }
 
             @Override
