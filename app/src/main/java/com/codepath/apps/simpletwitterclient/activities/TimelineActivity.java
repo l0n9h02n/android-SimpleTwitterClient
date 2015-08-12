@@ -1,5 +1,6 @@
 package com.codepath.apps.simpletwitterclient.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -26,6 +27,7 @@ public class TimelineActivity extends ActionBarActivity {
     private ArrayList<Tweet> tweets;
     private TweetsArrayAdapter aTweets;
     private ListView lvTweets;
+    private static final int COMPOSE_ACTIVITY_REQUEST_CODE = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +80,16 @@ public class TimelineActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_compose) {
+            onClickCompose();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void onClickCompose() {
+        Intent composeIntent = new Intent(this, ComposeActivity.class);
+        startActivityForResult(composeIntent, COMPOSE_ACTIVITY_REQUEST_CODE);
     }
 }
