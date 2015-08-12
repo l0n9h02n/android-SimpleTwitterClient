@@ -27,7 +27,6 @@ public class TimelineActivity extends ActionBarActivity {
     private ArrayList<Tweet> tweets;
     private TweetsArrayAdapter aTweets;
     private ListView lvTweets;
-    private static final int COMPOSE_ACTIVITY_REQUEST_CODE = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +89,6 @@ public class TimelineActivity extends ActionBarActivity {
 
     private void onClickCompose() {
         Intent composeIntent = new Intent(this, ComposeActivity.class);
-        startActivityForResult(composeIntent, COMPOSE_ACTIVITY_REQUEST_CODE);
+        startActivity(composeIntent);
     }
 }

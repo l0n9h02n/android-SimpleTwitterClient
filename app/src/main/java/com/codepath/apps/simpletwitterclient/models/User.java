@@ -12,6 +12,7 @@ public class User {
     private String screenName;
     private String profileImageUrl;
 
+
     public String getName() {
         return name;
     }
