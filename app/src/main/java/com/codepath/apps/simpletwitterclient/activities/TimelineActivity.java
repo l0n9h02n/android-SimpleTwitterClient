@@ -23,6 +23,8 @@ import java.util.ArrayList;
 
 public class TimelineActivity extends ActionBarActivity {
 
+    private static final int COMPOSE_ACTIVITY_REQUEST_CODE = 0;
+
     private TwitterClient client;
     private ArrayList<Tweet> tweets;
     private TweetsArrayAdapter aTweets;
@@ -89,6 +91,16 @@ public class TimelineActivity extends ActionBarActivity {
 
     private void onClickCompose() {
         Intent composeIntent = new Intent(this, ComposeActivity.class);
-        startActivity(composeIntent);
+        startActivityForResult(composeIntent, COMPOSE_ACTIVITY_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            client.maxId = 0;
+            tweets.clear();
+            aTweets.clear();
+            populateTime();
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.codepath.apps.simpletwitterclient.activities;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -90,6 +91,7 @@ public class ComposeActivity extends ActionBarActivity {
         client.updateStatuses(content, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject json) {
+                setResult(Activity.RESULT_OK);
                 finish();
             }
 
