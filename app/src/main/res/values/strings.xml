@@ -2,18 +2,28 @@
 <resources>
 
     <string name="app_name">Simple Twitter Client</string>
-    <string name="login_label">Connect to Twitter</string>
-    <string name="title_activity_timeline">Timeline</string>
-    <string name="action_settings">Settings</string>
+    <!-- menu -->
     <string name="menu_compose">Compose</string>
+    <string name="menu_profile">Profile</string>
+    <string name="action_settings">Settings</string>
 
+    <!-- activity title -->
+    <string name="title_activity_timeline">Timeline</string>
+    <string name="title_activity_compose"></string>
+    <string name="title_activity_profile">Profile</string>
+
+    <!-- layout.login -->
+    <string name="login_label">Connect to Twitter</string>
+    <!-- layout.timeline -->
     <string name="user_name">User Name</string>
     <string name="tweet_content">Tweet Content</string>
     <string name="user_screenname">User ID</string>
-    <string name="title_activity_compose"></string>
-
+    <!-- layout.compose -->
     <string name="tweet">TWEET</string>
     <string name="my_screen_name">\@screen_name</string>
     <string name="tweet_hint">What\'s happening?</string>
+    <!-- layout.profile -->
+    <string name="followers">followers</string>
+    <string name="following">following</string>
 
 </resources>

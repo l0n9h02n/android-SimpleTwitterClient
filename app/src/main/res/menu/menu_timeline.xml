@@ -3,9 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.codepath.apps.simpletwitterclient.activities.TimelineActivity">
 
-    <item android:id="@+id/action_compose"
-        android:title="@string/menu_compose"
+    <item
+        android:id="@+id/action_compose"
         android:icon="@drawable/ic_compose"
+        android:title="@string/menu_compose"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/miProfile"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/menu_profile" />
 </menu>

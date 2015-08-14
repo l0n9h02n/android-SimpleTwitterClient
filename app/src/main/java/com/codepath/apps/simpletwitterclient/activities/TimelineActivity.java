@@ -52,6 +52,9 @@ public class TimelineActivity extends ActionBarActivity {
         if (id == R.id.action_compose) {
             onClickCompose();
             return true;
+        } else if (id == R.id.miProfile) {
+            onClickProfile();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -60,6 +63,12 @@ public class TimelineActivity extends ActionBarActivity {
     private void onClickCompose() {
         Intent composeIntent = new Intent(this, ComposeActivity.class);
         startActivityForResult(composeIntent, COMPOSE_ACTIVITY_REQUEST_CODE);
+    }
+
+    private void onClickProfile() {
+        // Launch the profile view
+        Intent i = new Intent(this, ProfileActivity.class);
+        startActivity(i);
     }
 
     /*
