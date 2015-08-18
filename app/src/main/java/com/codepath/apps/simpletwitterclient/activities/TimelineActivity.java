@@ -71,17 +71,17 @@ public class TimelineActivity extends ActionBarActivity {
         startActivity(i);
     }
 
-    /*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-        client.maxId = 0;
-        tweets.clear();
-        aTweets.clear();
-        populateTime();
+            /*
+            client.maxId = 0;
+            tweets.clear();
+            aTweets.clear();
+            populateTime();
+            */
         }
     }
-    */
 
     // Return the order of the fragments in the view pager
     public class TweetsPagerAdapter extends FragmentPagerAdapter {

@@ -23,7 +23,7 @@
     <string name="my_screen_name">\@screen_name</string>
     <string name="tweet_hint">What\'s happening?</string>
     <!-- layout.profile -->
-    <string name="followers">followers</string>
-    <string name="following">following</string>
+    <string name="followers">%d followers</string>
+    <string name="following">%d following</string>
 
 </resources>

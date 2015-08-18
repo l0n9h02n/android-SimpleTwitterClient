@@ -3,7 +3,6 @@ package com.codepath.apps.simpletwitterclient.activities;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -35,7 +34,6 @@ public class ProfileActivity extends ActionBarActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 user = User.fromJson(response);
-                Log.i("xxxxxxxxxxxx", user.toString());
                 getSupportActionBar().setTitle("@" + user.getScreenName());
 
                 populateProfileHeader(user);
@@ -64,8 +62,12 @@ public class ProfileActivity extends ActionBarActivity {
         Picasso.with(this).load(user.getProfileImageUrl()).into(ivProfileImage);
         tvProfileName.setText(user.getName());
         tvTagline.setText(user.getTagline());
-        tvFollowers.setText(String.valueOf(user.getFollowersCount()));
-        tvFollowing.setText(String.valueOf(user.getFriendsCount()));
+        String strFollowers = getApplicationContext().getString(R.string.followers);
+        // tvFollowers.setText(String.valueOf(user.getFollowersCount()));
+        tvFollowers.setText(String.format(strFollowers, user.getFollowersCount()));
+        String strFollowing = getApplicationContext().getString(R.string.following);
+        // tvFollowing.setText(String.valueOf(user.getFriendsCount()));
+        tvFollowing.setText(String.format(strFollowing, user.getFriendsCount()));
     }
 
     @Override
