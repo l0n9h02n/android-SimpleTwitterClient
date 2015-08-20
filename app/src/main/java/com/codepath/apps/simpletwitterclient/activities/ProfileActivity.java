@@ -1,5 +1,6 @@
 package com.codepath.apps.simpletwitterclient.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
@@ -22,23 +23,23 @@ import org.json.JSONObject;
 public class ProfileActivity extends ActionBarActivity {
     TwitterClient client;
     User user;
+    private long userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        Intent i = getIntent();
+        userId = i.getLongExtra("user_id", 0);
+
         client = TwitterApplication.getRestClient();
         // Get user info
-        client.getVerifyCredentials(new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                user = User.fromJson(response);
-                getSupportActionBar().setTitle("@" + user.getScreenName());
-
-                populateProfileHeader(user);
-            }
-        });
+        if (userId > 0) {
+            client.showUsers(userId, new UserProfileHttpResponseHandler());
+        } else {
+            client.getVerifyCredentials(new UserProfileHttpResponseHandler());
+        }
 
         // Get the screen name from the activity that launch this
         String screenName = getIntent().getStringExtra("screen_name");
@@ -49,6 +50,24 @@ public class ProfileActivity extends ActionBarActivity {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flContainer, fragment);
             ft.commit();
+        }
+    }
+
+    private class UserProfileHttpResponseHandler extends JsonHttpResponseHandler
+    {
+        @Override
+        public void onSuccess(int statusCode, Header[] headers, JSONObject response)
+        {
+            // Response is automatically parsed into a JSONObject
+            user = User.fromJson(response);
+            getSupportActionBar().setTitle("@" + user.getScreenName());
+            populateProfileHeader(user);
+        }
+
+        @Override
+        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject response)
+        {
+            super.onFailure(statusCode, headers, throwable, response);
         }
     }
 
